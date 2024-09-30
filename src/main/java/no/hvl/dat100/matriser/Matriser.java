@@ -2,51 +2,61 @@ package no.hvl.dat100.matriser;
 
 public class Matriser {
 
+	public static String makeStr(int[][] matrise, int row, String spacer) {
+		if (matrise[row].length == 0)
+			return "";
+
+		String str = String.valueOf(matrise[row][0]);
+		for (int i = 1; i < matrise[row].length; i++)
+			str += spacer + matrise[row][i];
+
+		return str;
+	}
+
 	// a)
 	public static void skrivUt(int[][] matrise) {
-		
-		// TODO
-		throw new UnsupportedOperationException("Metoden skrivUt ikke implementert");
+
+		for (int i = 0; i < matrise.length; i++) {
+			String strRow = makeStr(matrise, i, " ");
+			System.out.println(strRow);
+		}
 	}
 
 	// b)
 	public static String tilStreng(int[][] matrise) {
 
-		// TODO
-		throw new UnsupportedOperationException("Metoden tilStreng ikke implementert");
-		
+		String strMatrise = "";
+		for (int i = 0; i < matrise.length; i++) {
+			strMatrise += makeStr(matrise, i, " ") + " \n";
+		}
+		return strMatrise;
 	}
 
 	// c)
 	public static int[][] skaler(int tall, int[][] matrise) {
-		
-		// TODO
-		throw new UnsupportedOperationException("Metoden skaler ikke implementert");
-	
+		int[][] nyMatrise = new int[matrise.length][matrise[0].length];
+
+		for (int i = 0; i < matrise.length; i++) {
+			for (int j = 0; j < matrise[i].length; j++) {
+				nyMatrise[i][j] = matrise[i][j] * tall;
+			}
+		}
+		return nyMatrise;
+
 	}
 
 	// d)
 	public static boolean erLik(int[][] a, int[][] b) {
 
-		// TODO
-		throw new UnsupportedOperationException("Metoden erLik ikke implementert");
-		
-	}
-	
-	// e)
-	public static int[][] speile(int[][] matrise) {
+		if (a.length != b.length || a[0].length != b[0].length)
+			return false;
 
-		// TODO
-
-		throw new UnsupportedOperationException("Metoden speile ikke implementert");
-	
-	}
-
-	// f)
-	public static int[][] multipliser(int[][] a, int[][] b) {
-
-		// TODO
-		throw new UnsupportedOperationException("Metoden multipliser ikke implementert");
-	
+		for (int i = 0; i < a.length; i++) {
+			for (int j = 0; j < b[i].length; j++) {
+				if (a[i] != b[i])
+					return false;
+			}
+		}
+		return true;
 	}
 }
